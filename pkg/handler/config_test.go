@@ -2,6 +2,7 @@ package handler
 
 import (
 	"context"
+	"log/slog"
 	"testing"
 
 	"github.com/stretchr/testify/assert"
@@ -28,7 +29,7 @@ func TestConfig(t *testing.T) {
 	}
 
 	a.Nil(config.validate())
-	a.NotNil(config.Logger)
+	a.Same(slog.Default(), config.Logger)
 	a.NotNil(config.StoreComposer)
 	a.Equal("/files/", config.BasePath)
 }
